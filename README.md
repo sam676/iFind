@@ -10,5 +10,7 @@ based on the coordinates of cell phone towers pinged by a user's mobile device a
 obtained through records provided by their wireless carrier.
 
 '-t' cell tower data
+
 '-r' phone record
+
 '-d' output directory

@@ -38,8 +38,9 @@ def getRecord(dataFile):
 		print("Can't open data file!")
 
 def getMap(towerFile, dataFile, directory):
-	#API Key
-	key="AIzaSyBi93kmM1pdFNFtMlqZdbG7bzRYY9fon0k"
+	##API Key
+	##REMOVED FOR SAFTEY REASONS##
+	key="xxxxxxxxxxxxxxx"
 
 	#store URL in variable URL
 	url = "https://maps.googleapis.com/maps/api/staticmap?"

@@ -13,22 +13,4 @@ Example use case is tracking a kidnapper.
 
 '-d' output directory
 
- ______________________
-|     Map Legend        |
-|______________________ |
-|______________________ |
-| Color   Record Type   |
-|~~~~~~~~~~~~~~~~~~~~~~ |
-| Blue    | SMS         |
-| Red     | Email       |
-| Green   | Ping        |
-|______________________ |
-| Black   | First Tower |
-|______________________ |
-|______________________ |
-| Line    | Tower Path  |
-|______________________ |
-|______________________ |
-| Blue    | Potential   |
-| Area    | Location    |
-|______________________ |
+

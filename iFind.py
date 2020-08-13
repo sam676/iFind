@@ -1,11 +1,20 @@
 #! /usr/bin/python
 
-#Stephanie Michalowicz
-#Digital Forensics
-#Final Project
-#iFind: A python command line reverse geocoding location request and response tool 
-#based on the coordinates of cell phone towers pinged by a user's mobile device and 
-#obtained through records provided by their wireless carrier
+"""
+
+Stephanie Michalowicz
+Digital Forensics
+Final Project
+
+iFind: A python command line reverse geocoding location request and response tool 
+based on the coordinates of cell phone towers pinged by a user's mobile device and 
+obtained through records provided by their wireless carrier.
+iFind matches tower_id in ISP record to local tower records, returns csv report, 
+and draws a polygon over the estimated location of the user on Google Maps web page.
+The scatter plot color refers to record type.
+
+"""
+
 
 import fileinput
 import argparse
@@ -46,7 +55,7 @@ def getMap(towerFile, dataFile, directory):
 			tower = getTower(towerFile)
 			tower = tower.split()
 			towerName = tower[0]
-			towerNames.append(towerName)
+			towerNames.append(int(towerName))
 			latitudes.append(float(tower[1]))
 			longitudes.append(float(tower[2]))
 		except:
@@ -57,6 +66,7 @@ def getMap(towerFile, dataFile, directory):
 	dateList = []
 	timeList = []
 	recordList = []
+	tower_id = []
 	while(data):
 		try:
 			data = getRecord(dataFile)
@@ -67,24 +77,13 @@ def getMap(towerFile, dataFile, directory):
 			timeList.append(time)
 			recordType = data[2]
 			recordList.append(recordType)
+			data_tower_name = int(data[3])
+			tower_id.append(data_tower_name)
 		except:
 			print(" " )
 
 	gmap = gmplot.GoogleMapPlotter(latitudes[0], longitudes[0], 10)
 
-	color = ""
-	count = 0
-	for record in recordList:
-		if "SMS" in record:
-			color = "blue"
-		if "Ping" in record:
-			color = "green"
-		if "Email" in record:
-			color = "red"
-		lat = [latitudes[count]]
-		longit = [longitudes[count]]
-		gmap.scatter(lat, longit, color)
-		count += 1
 	print("Plotting data on map.html file.")
 	print("  ______________________")
 	print(" |     Map Legend       |")
@@ -106,20 +105,40 @@ def getMap(towerFile, dataFile, directory):
 	print(" | Area    | Location   |")
 	print(" |______________________|")
 
-	gmap.polygon(latitudes, longitudes, color = 'blue')
-	gmap.plot(latitudes,longitudes, 'red', edge_width = 3.0)
+	color = ""
+	latList = []
+	longitList= []
 
 	print("\nCreating report.txt file.\n")
 	f = open('{0}/report.csv'.format(directory), 'w')
 	f.write("Tower ID, Latitudes, Longitudes, Time, Date, Record Type\n")
-	counting = 0
-	for record in recordList:
-		f.write(towerNames[counting] + "," + str(latitudes[counting])+ "," + str(longitudes[counting])+ "," +  timeList[counting]  + "," + dateList[counting] + "," + recordList[counting]+ "\n")
-		counting += 1
 
-	gmap.apikey = key
-	gmap.draw('{0}/Map.html'.format(directory))
 
+	for index, record in enumerate(recordList):
+		if "SMS" in record:
+			color = "blue"
+		if "Ping" in record:
+			color = "green"
+		if "Email" in record:
+			color = "red"
+		identifier = tower_id[index]
+
+		if identifier in towerNames:
+			towerNameIndex = towerNames.index(identifier)
+			lat = latitudes[towerNameIndex]
+			latList.append(lat)
+			longit = longitudes[towerNameIndex]
+			longitList.append(longit)
+			gmap.scatter(latList, longitList, color)
+			gmap.polygon(latList, longitList, "blue")
+			gmap.plot(latList,longitList,"red", edge_width = 3.0)	
+			gmap.apikey = key
+			gmap.draw('{0}/Map.html'.format(directory))
+			f.write('{0}, {1}, {2}, {3}, {4}, {5} \n'.format(towerNames[towerNameIndex],lat, longit, timeList[index], dateList[index], recordList[index]))
+		else:
+			print("No tower record for specified tower id.")
+
+		
 	# save and close the file 
 	f.close() 
 
@@ -150,6 +169,7 @@ def main():
 		getMap(towerFile, dataFile, dirPath)
 		towerFile.close()
 		dataFile.close()
+
 
 if __name__ == '__main__':
 	main()

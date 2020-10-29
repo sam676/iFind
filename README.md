@@ -9,20 +9,20 @@ To run, you must first install gmaps by running the following command:
 
 pip install gmaps
 
-'-tower' cell tower data
-'-record' phone record
-'-directory' output directory
-'-heatmap' show a heat map
-'-polygon' create a polygon to triangulate area between towers
-'-lines' show an outline / line
-'-markers'show markers colored by record type
-'-order' show order of activity
-'-activity' show phone record activity type (i.e., ping, call, SMS, email
-'-day' show the date
-'-time'show the time
-
+'-tower' cell tower data <br/>
+'-record' phone record<br/>
+'-directory' output directory<br/>
+'-heatmap' show a heat map<br/>
+'-polygon' create a polygon to triangulate area between towers<br/>
+'-lines' show an outline / line<br/>
+'-markers'show markers colored by record type<br/>
+'-order' show order of activity<br/>
+'-activity' show phone record activity type (i.e., ping, call, SMS, email<br/>
+'-day' show the date<br/>
+'-time'show the time<br/>
+<br/>
  ______________________
-
+<br/>
 
 TO DO:
 1)  If tower IDs are already sorted and tower list is larger than data file, convert to binary sort to decrease run time from O(n log n) to: best case O(1) average/ worst case O(log n)

@@ -21,7 +21,30 @@ pip install gmaps
 '-day' show the date<br/>
 '-time'show the time<br/>
 <br/>
+
+ ______________________ <br/>
+|     Map Legend       | <br/>
+|______________________|<br/>
+|______________________|<br/>
+| Color   Record Type  |<br/>
+|~~~~~~~~~~~~~~~~~~~~~~|<br/>
+| Blue    | SMS        |<br/>
+| Red     | Email      |<br/>
+| Green   | Ping       |<br/>
+| Yellow  | Call       |<br/>
+|______________________|<br/>
+| Black   | First Tower|<br/>
+|______________________|<br/>
+|______________________|<br/>
+| Line    | Tower Path |<br/>
+|______________________|<br/>
+|______________________|<br/>
+| Blue    | Potential  |<br/>
+| Area    | Location   |<br/>
+|______________________|<br/>
+
  ______________________
+ 
 <br/>
 
 TO DO:

@@ -22,25 +22,6 @@ pip install gmaps
 '-time'show the time
 
  ______________________
-|     Map Legend       |
-|______________________|
-|______________________|
-| Color   Record Type  |
-|~~~~~~~~~~~~~~~~~~~~~~|
-| Blue    | SMS        |
-| Red     | Email      |
-| Green   | Ping       |
-| Yellow  | Call       |
-|______________________|
-| Black   | First Tower|
-|______________________|
-|______________________|
-| Line    | Tower Path |
-|______________________|
-|______________________|
-| Blue    | Potential  |
-| Area    | Location   |
-|______________________|
 
 
 TO DO:

@@ -27,8 +27,8 @@ pip install gmaps
 TO DO:
 1)  if tower IDs are already sorted and tower list is larger than data file, convert to binary sort to decrease run time from O(n log n) to: best case O(1) average/ worst case O(log n)
 
-2)Convert if/else to switch case method - is there a way in python besides using functions or lambdas?
+2)  Convert if/else to switch case method - is there a way in python besides using functions or lambdas?
 
-3)Give option to show times/dates in a range
+3)  Give option to show times/dates in a range
 
-4)Figure out how to scale the legend and make it float 
+4)  Figure out how to scale the legend and make it float 
